@@ -32,6 +32,15 @@ public class ControladorVoz extends Thread {
 	ControladorListaED controladorED;
 	int flag;
 	Casa casa;
+	
+/**
+ * @brief filtrador de palabras
+ * 
+ *
+ * Compara la palabra obtenida mediante la voz, con los arrays : palabrasZona,palabrasED,palabrasEstados
+ * Una vez comparado, ejecuta el boton al que apunta.
+ */
+
 
 	public ControladorVoz(VentanaPrincipal vista, Casa casa) {
 
