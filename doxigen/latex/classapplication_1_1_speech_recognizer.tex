@@ -1,0 +1,83 @@
+\hypertarget{classapplication_1_1_speech_recognizer}{}\section{application.\+Speech\+Recognizer Class Reference}
+\label{classapplication_1_1_speech_recognizer}\index{application.\+Speech\+Recognizer@{application.\+Speech\+Recognizer}}
+
+
+Collaboration diagram for application.\+Speech\+Recognizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classapplication_1_1_speech_recognizer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries Task}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classapplication_1_1_speech_recognizer_acf64bba8786b912f367e230d195104b2}\label{classapplication_1_1_speech_recognizer_acf64bba8786b912f367e230d195104b2}} 
+{\bfseries Speech\+Recognizer} (\mbox{\hyperlink{classvista_1_1_ventana_principal}{Ventana\+Principal}} vista, \mbox{\hyperlink{classmodelo_1_1_casa}{Casa}} casa)
+\item 
+synchronized void \mbox{\hyperlink{classapplication_1_1_speech_recognizer_a3c3ad8b38751bf186e470dc9e29bec57}{start\+Speech\+Recognition}} (\mbox{\hyperlink{classvista_1_1_ventana_principal}{Ventana\+Principal}} vista)
+\item 
+synchronized void \mbox{\hyperlink{classapplication_1_1_speech_recognizer_a6c9ee420dd7fcf9b6aeda63361b0c819}{stop\+Ignore\+Speech\+Recognition\+Results}} ()
+\item 
+synchronized void \mbox{\hyperlink{classapplication_1_1_speech_recognizer_ad3dee52e0a9cd3dbcd9efa1fa6d38033}{ignore\+Speech\+Recognition\+Results}} ()
+\item 
+void \mbox{\hyperlink{classapplication_1_1_speech_recognizer_a494e51cb32e7ebc01e58ebc43444c387}{start\+Resources\+Thread}} ()
+\item 
+void \mbox{\hyperlink{classapplication_1_1_speech_recognizer_a52344e31f4d4cec33c0713387a10c235}{Temporizador}} (int segundos)
+\item 
+\mbox{\Hypertarget{classapplication_1_1_speech_recognizer_a36f81c4e2247525167e24f41a6de25f6}\label{classapplication_1_1_speech_recognizer_a36f81c4e2247525167e24f41a6de25f6}} 
+String {\bfseries get\+Palabra} ()
+\item 
+\mbox{\Hypertarget{classapplication_1_1_speech_recognizer_af426938b9762c29f5a5bfbb3391fe63d}\label{classapplication_1_1_speech_recognizer_af426938b9762c29f5a5bfbb3391fe63d}} 
+String {\bfseries get\+Speech} ()
+\item 
+\mbox{\Hypertarget{classapplication_1_1_speech_recognizer_aa6e25a4037ce514d7d4a6835afbf0db8}\label{classapplication_1_1_speech_recognizer_aa6e25a4037ce514d7d4a6835afbf0db8}} 
+boolean {\bfseries get\+Ignore\+Speech\+Recognition\+Results} ()
+\item 
+\mbox{\Hypertarget{classapplication_1_1_speech_recognizer_a0fc8931dac55b932ee36e4d537a76063}\label{classapplication_1_1_speech_recognizer_a0fc8931dac55b932ee36e4d537a76063}} 
+boolean {\bfseries get\+Speech\+Recognizer\+Thread\+Running} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classapplication_1_1_speech_recognizer_ad3dee52e0a9cd3dbcd9efa1fa6d38033}\label{classapplication_1_1_speech_recognizer_ad3dee52e0a9cd3dbcd9efa1fa6d38033}} 
+\index{application\+::\+Speech\+Recognizer@{application\+::\+Speech\+Recognizer}!ignore\+Speech\+Recognition\+Results@{ignore\+Speech\+Recognition\+Results}}
+\index{ignore\+Speech\+Recognition\+Results@{ignore\+Speech\+Recognition\+Results}!application\+::\+Speech\+Recognizer@{application\+::\+Speech\+Recognizer}}
+\subsubsection{\texorpdfstring{ignore\+Speech\+Recognition\+Results()}{ignoreSpeechRecognitionResults()}}
+{\footnotesize\ttfamily synchronized void application.\+Speech\+Recognizer.\+ignore\+Speech\+Recognition\+Results (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ignores the results of Speech\+Recognition \mbox{\Hypertarget{classapplication_1_1_speech_recognizer_a494e51cb32e7ebc01e58ebc43444c387}\label{classapplication_1_1_speech_recognizer_a494e51cb32e7ebc01e58ebc43444c387}} 
+\index{application\+::\+Speech\+Recognizer@{application\+::\+Speech\+Recognizer}!start\+Resources\+Thread@{start\+Resources\+Thread}}
+\index{start\+Resources\+Thread@{start\+Resources\+Thread}!application\+::\+Speech\+Recognizer@{application\+::\+Speech\+Recognizer}}
+\subsubsection{\texorpdfstring{start\+Resources\+Thread()}{startResourcesThread()}}
+{\footnotesize\ttfamily void application.\+Speech\+Recognizer.\+start\+Resources\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Starting a Thread that checks if the resources needed to the Speech\+Recognition library are available \mbox{\Hypertarget{classapplication_1_1_speech_recognizer_a3c3ad8b38751bf186e470dc9e29bec57}\label{classapplication_1_1_speech_recognizer_a3c3ad8b38751bf186e470dc9e29bec57}} 
+\index{application\+::\+Speech\+Recognizer@{application\+::\+Speech\+Recognizer}!start\+Speech\+Recognition@{start\+Speech\+Recognition}}
+\index{start\+Speech\+Recognition@{start\+Speech\+Recognition}!application\+::\+Speech\+Recognizer@{application\+::\+Speech\+Recognizer}}
+\subsubsection{\texorpdfstring{start\+Speech\+Recognition()}{startSpeechRecognition()}}
+{\footnotesize\ttfamily synchronized void application.\+Speech\+Recognizer.\+start\+Speech\+Recognition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classvista_1_1_ventana_principal}{Ventana\+Principal}}}]{vista }\end{DoxyParamCaption})}
+
+Starts the Speech Recognition Thread \mbox{\Hypertarget{classapplication_1_1_speech_recognizer_a6c9ee420dd7fcf9b6aeda63361b0c819}\label{classapplication_1_1_speech_recognizer_a6c9ee420dd7fcf9b6aeda63361b0c819}} 
+\index{application\+::\+Speech\+Recognizer@{application\+::\+Speech\+Recognizer}!stop\+Ignore\+Speech\+Recognition\+Results@{stop\+Ignore\+Speech\+Recognition\+Results}}
+\index{stop\+Ignore\+Speech\+Recognition\+Results@{stop\+Ignore\+Speech\+Recognition\+Results}!application\+::\+Speech\+Recognizer@{application\+::\+Speech\+Recognizer}}
+\subsubsection{\texorpdfstring{stop\+Ignore\+Speech\+Recognition\+Results()}{stopIgnoreSpeechRecognitionResults()}}
+{\footnotesize\ttfamily synchronized void application.\+Speech\+Recognizer.\+stop\+Ignore\+Speech\+Recognition\+Results (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops ignoring the results of Speech\+Recognition \mbox{\Hypertarget{classapplication_1_1_speech_recognizer_a52344e31f4d4cec33c0713387a10c235}\label{classapplication_1_1_speech_recognizer_a52344e31f4d4cec33c0713387a10c235}} 
+\index{application\+::\+Speech\+Recognizer@{application\+::\+Speech\+Recognizer}!Temporizador@{Temporizador}}
+\index{Temporizador@{Temporizador}!application\+::\+Speech\+Recognizer@{application\+::\+Speech\+Recognizer}}
+\subsubsection{\texorpdfstring{Temporizador()}{Temporizador()}}
+{\footnotesize\ttfamily void application.\+Speech\+Recognizer.\+Temporizador (\begin{DoxyParamCaption}\item[{int}]{segundos }\end{DoxyParamCaption})}
+
+Timer 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Ander/\+Documents/\+Java/\+Dream\+Housev2/src/application/Speech\+Recognizer.\+java\end{DoxyCompactItemize}

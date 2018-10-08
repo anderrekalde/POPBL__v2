@@ -1,0 +1,18 @@
+<map id="controlador.ControladorBotones" name="controlador.ControladorBotones">
+<area shape="rect" id="node3" href="$classvista_1_1_ventana_principal.html" title="vista.VentanaPrincipal" alt="" coords="966,551,1117,577"/>
+<area shape="rect" id="node13" href="$classcontrolador_1_1_controlador_lista_e_d.html" title="controlador.ControladorListaED" alt="" coords="1612,319,1815,345"/>
+<area shape="rect" id="node14" href="$classvista_1_1_dialogo_e_d.html" title="vista.DialogoED" alt="" coords="1345,924,1459,951"/>
+<area shape="rect" id="node43" href="$classcontrolador_1_1_controlador_lista_zonas.html" title="controlador.ControladorLista\lZonas" alt="" coords="1621,463,1805,505"/>
+<area shape="rect" id="node6" href="$classapplication_1_1_voz_asistente.html" title="application.VozAsistente" alt="" coords="1319,171,1485,197"/>
+<area shape="rect" id="node10" href="$classcontrolador_1_1_controlador_voz.html" title="controlador.ControladorVoz" alt="" coords="1972,185,2151,212"/>
+<area shape="rect" id="node33" href="$classvista_1_1_mi_panel_img_and_e_ds.html" title="vista.MiPanelImgAndEDs" alt="" coords="1977,1367,2145,1393"/>
+<area shape="rect" id="node9" href="$classapplication_1_1_speech_recognizer.html" title="application.SpeechRecognizer" alt="" coords="1615,111,1812,137"/>
+<area shape="rect" id="node12" href="$classmodelo_1_1_e_d.html" title="modelo.ED" alt="" coords="317,1347,404,1373"/>
+<area shape="rect" id="node17" href="$classmodelo_1_1_e_d_regulable.html" title="modelo.EDRegulable" alt="" coords="781,1287,924,1313"/>
+<area shape="rect" id="node24" href="$classmodelo_1_1_e_d_programable.html" title="modelo.EDProgramable" alt="" coords="576,1395,735,1421"/>
+<area shape="rect" id="node20" href="$classvista_1_1_mi_boton_estado.html" title="vista.MiBotonEstado" alt="" coords="971,1111,1112,1137"/>
+<area shape="rect" id="node34" href="$classmodelo_1_1_zona.html" title="modelo.Zona" alt="" coords="993,1561,1089,1588"/>
+<area shape="rect" id="node23" href="$classmodelo_1_1_e_d_prog_and_reg.html" title="modelo.EDProgAndReg" alt="" coords="962,1439,1121,1465"/>
+<area shape="rect" id="node41" href="$classvista_1_1_reloj_frame.html" title="vista.RelojFrame" alt="" coords="596,819,715,845"/>
+<area shape="rect" id="node28" href="$classmodelo_1_1_casa.html" title="modelo.Casa" alt="" coords="311,188,410,215"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="controlador.ControladorBotonesConfig" name="controlador.ControladorBotonesConfig">
+<area shape="rect" id="node3" href="$classvista_1_1_menu_config.html" title="vista.MenuConfig" alt="" coords="2300,545,2420,572"/>
+<area shape="rect" id="node20" href="$classcontrolador_1_1_controlador_acciones_menu_config.html" title="controlador.ControladorAcciones\lMenuConfig" alt="" coords="2632,169,2843,210"/>
+<area shape="rect" id="node23" href="$classcontrolador_1_1_controlador_tool_bar_tipos_zona_config.html" title="controlador.ControladorTool\lBarTiposZonaConfig" alt="" coords="2647,583,2827,625"/>
+<area shape="rect" id="node33" href="$classcontrolador_1_1_controlador_lista_e_d.html" title="controlador.ControladorListaED" alt="" coords="495,847,697,873"/>
+<area shape="rect" id="node34" href="$classvista_1_1_dialogo_e_d.html" title="vista.DialogoED" alt="" coords="1931,683,2044,709"/>
+<area shape="rect" id="node44" href="$classcontrolador_1_1_controlador_botones.html" title="controlador.ControladorBotones" alt="" coords="1885,1057,2089,1084"/>
+<area shape="rect" id="node48" href="$classcontrolador_1_1_controlador_lista_zonas.html" title="controlador.ControladorLista\lZonas" alt="" coords="2268,1214,2452,1255"/>
+<area shape="rect" id="node15" href="$classcontrolador_1_1_controlador_lista_zonas_config.html" title="controlador.ControladorLista\lZonasConfig" alt="" coords="2645,311,2829,353"/>
+<area shape="rect" id="node24" href="$classvista_1_1_ventana_principal.html" title="vista.VentanaPrincipal" alt="" coords="1547,1211,1698,1237"/>
+<area shape="rect" id="node9" href="$classvista_1_1_renderer_zona_config.html" title="vista.RendererZonaConfig" alt="" coords="1903,211,2071,237"/>
+<area shape="rect" id="node12" href="$classvista_1_1_mi_panel_img.html" title="vista.MiPanelImg" alt="" coords="1927,1617,2047,1644"/>
+<area shape="rect" id="node38" href="$classvista_1_1_mi_panel_img_and_e_ds.html" title="vista.MiPanelImgAndEDs" alt="" coords="1903,1415,2071,1441"/>
+<area shape="rect" id="node21" href="$classmodelo_1_1_casa.html" title="modelo.Casa" alt="" coords="311,997,410,1024"/>
+<area shape="rect" id="node30" href="$classcontrolador_1_1_controlador_voz.html" title="controlador.ControladorVoz" alt="" coords="849,1225,1028,1252"/>
+<area shape="rect" id="node26" href="$classapplication_1_1_voz_asistente.html" title="application.VozAsistente" alt="" coords="1904,1859,2071,1885"/>
+<area shape="rect" id="node29" href="$classapplication_1_1_speech_recognizer.html" title="application.SpeechRecognizer" alt="" coords="1168,1523,1365,1549"/>
+<area shape="rect" id="node32" href="$classmodelo_1_1_e_d.html" title="modelo.ED" alt="" coords="553,692,639,719"/>
+<area shape="rect" id="node46" href="$classvista_1_1_reloj_frame.html" title="vista.RelojFrame" alt="" coords="1207,887,1326,913"/>
+<area shape="rect" id="node39" href="$classmodelo_1_1_zona.html" title="modelo.Zona" alt="" coords="1575,1707,1671,1733"/>
+</map>
