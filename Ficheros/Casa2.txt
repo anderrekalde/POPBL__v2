@@ -1,0 +1,27 @@
+Otros Principal$House.png$true
+*
+Cocina uno$Cocina.png$false
+&Horno dos$Horno.png$false$grill$nada/uno/doble/grill/$100$300$220
+€Lavadora uno$Lavadora.png$false$nada$15 minutos/30 minutos/Lana/Nada/
+&Horno uno$Horno.png$true$uno$nada/uno/doble/grill/$100$300$200
+*
+Salón uno$Salón.png$false
+Persiana uno$Persiana.png$true
+#Temperatura uno$Temperatura.png$false$0$100$60
+Luz uno$Luz.png$true
+#Luz cuatro$LuzRegulable.png$false$0$10$0
+*
+Habitación uno$Habitación.png$false
+*
+Jardín uno$Jardín.png$false
+Agua uno$Agua.png$false
+*
+Baño tres$Baño.png$false
+*
+Salón dos$Salón.png$false
+&Televisión uno$Televisión.png$true$Sexta$ETB/Antena3/Cuatro/Sexta/Telecinco/Gol/$0$100$20
+&Radio uno$Radio.png$true$Los 40$Los 40/Rock FM/RAC1/Radio Marca/La Ser/Cope/$0$100$40
+*
+Baño uno$Baño.png$false
+Luz uno$Luz.png$false
+*

@@ -1,0 +1,48 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar 
+ */
+
+grammar grammar;
+
+
+public <clavehablar> = (casa | aceptar | cancelar | apagar | encender);
+public <zonas> = (principal);
+
+
+public <habitaciones> = (baño uno | cocina uno | jardín uno | salón uno | dormitorio uno);
+public <habitaciones2> = (baño dos | cocina dos | jardín dos | salón dos | dormitorio dos);
+public <habitaciones3> = (baño tres | cocina tres | jardín tres | salón tres | dormitorio tres);
+public <habitaciones4> = (baño cuatro | cocina cuatro | jardín cuatro | salón cuatro | dormitorio cuatro);
+public <habitaciones5> = (baño cinco | cocina cinco | jardín cinco | salón cinco | dormitorio cinco);
+
+
+public <electrodomesticos> = ( agua uno | agua dos | agua tres | agua cuatro | agua cinco | ordenador uno | ordenador dos | ordenador tres | ordenador cuatro | ordenador cinco );
+public <electrodomesticosprogramables> = ( lavadora uno | lavadora dos | lavadora tres | lavadora cuatro | lavadora cinco);
+public <electrodomesticosgraduables> = ( luz uno | luz dos | luz tres | luz cuatro | luz cinco | temperatura uno | temperatura dos | temperatura tres | temperatura cuatro | temperatura cinco);
+public <electrodomesticosgraduprogram> = ( televisión uno | televisión dos | televisión tres | televisión cuatro | televisión cinco | radio uno | radio dos | radio tres | radio cuatro | radio cinco | horno uno | horno dos | horno tres | horno cuatro | horno cinco );	
+public <electrodomesticosgraduprogramee> = ( ventana uno | ventana dos | ventana tres | ventana cuatro | ventana cinco);
+
+public <programa> = ( programa uno | programa dos | programa tres | programa cuatro | programa cinco | programa seis | programa siete | programa ocho | programa nueve | programa diez );
+public <programa2> = ( programa once | programa doce | programa trece | programa catorce | programa quince | programa dieciseis | programa diecisiete | programa dieciocho | programa diecinueve | programa veinte);
+public <programa3> = ( programa veintiuno | programa veintidós | programa veintitres | programa veinticuatro | programa veinticinco | programa veintiseis | programa veintisiete | programa veintiocho | programa veintinueve | programa treinta);
+public <programa4> = ( programa treinta y uno | programa treinta y dos | programa treinta y tres | programa treinta y cuatro | programa treinta y cinco | programa treinta y seis | programa treinta y siete | programa treinta y ocho | programa treinta y nueve | programa cuarenta);
+
+public <vvaldiez> = (valor uno |valor dos |valor tres |valor cuatro |valor cinco |valor seis |valor siete |valor ocho |valor nueve |valor diez);
+public <vvalveinte> = (valor once | valor doce | valor trece | valor catorce | valor quince | valor dieciseis | valor diecisiete | valor dieciocho | valor diecinueve | valor veinte);
+public <vvaltreinta> = (valor veintiuno | valor veintidós | valor veintitres | valor veinticuatro | valor veinticinco | valor veintiseis | valor veintisiete | valor veintiocho | valor veintinueve | valor treinta);
+public <vvalcuarenta> = (valor treinta y uno | valor treinta y dos | valor treinta y tres | valor treinta y cuatro | valor treinta y cinco | valor treinta y seis | valor treinta y siete | valor treinta y ocho | valor treinta y nueve | valor cuarenta);
+public <vdiezendiez> = (valor cincuenta | valor sesenta | valor setenta | valor ochenta | valor noventa | valor cien );
+public <vvalcien> = (valor ciento diez | valor ciento veinte | valor ciento treinta | valor ciento cuarenta | valor ciento cincuenta | valor ciento sesenta | valor ciento setenta | valor ciento ochenta | valor ciento noventa | valor doscientos);
+public <vvaldoscientos> = (valor doscientos diez | valor doscientos veinte | valor doscientos treinta | valor doscientos cuarenta | valor doscientos cincuenta | valor doscientos sesenta | valor doscientos setenta | valor doscientos ochenta | valor doscientos noventa | valor trescientos);
+
+public <valdiez> = (uno | dos | tres | cuatro | cinco | seis | siete | ocho | nueve | diez);
+public <valveinte> = (once | doce | trece | catorce | quince | dieciseis | diecisiete | dieciocho | diecinueve | veinte);
+public <valtreinta> = (veintiuno | veintidós | veintitres | veinticuatro | veinticinco | veintiseis | veintisiete | veintiocho | veintinueve | treinta);
+public <valcuarenta> = (treinta y uno | treinta y dos | treinta y tres | treinta y cuatro | treinta y cinco | treinta y seis | treinta y siete | treinta y ocho | treinta y nueve | cuarenta);
+public <diezendiez> = (cincuenta | sesenta | setenta | ochenta | noventa | cien );
+public <valcien> = (ciento diez | ciento veinte | ciento treinta | ciento cuarenta | ciento cincuenta | ciento sesenta | ciento setenta | ciento ochenta | ciento noventa | doscientos);
+public <valdoscientos> = (doscientos diez | doscientos veinte | doscientos treinta | doscientos cuarenta | doscientos cincuenta | doscientos sesenta | doscientos setenta | doscientos ochenta | doscientos noventa | trescientos);
+
+public <localizar> = (en que habitación estamos);
