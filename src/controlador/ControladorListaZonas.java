@@ -3,7 +3,6 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 
 import application.VozAsistente;
 import modelo.Zona;
@@ -12,7 +11,7 @@ import vista.MiPanelImgAndEDs;
 import vista.VentanaPrincipal;
 
 public class ControladorListaZonas implements ActionListener {
-	final static String PATHIMG = "Imagenes/";
+	static final String PATHIMG = "Imagenes/";
 	VentanaPrincipal vista;
 	VozAsistente voz;
 
@@ -27,9 +26,10 @@ public class ControladorListaZonas implements ActionListener {
 		if (vista.getFlag() == 0) {
 			MiPanelImgAndEDs panelCentral = vista.getPanelCentral();
 			MiBotonZona botonPulsado = vista.getBotonLista(e.getActionCommand());
-			System.out.println("entrando a " + e.getActionCommand());
 			voz.speak("entrando a " + e.getActionCommand());
-			Zona zBoton, zImagen, zAux;
+			Zona zBoton;
+			Zona zImagen;
+			Zona zAux;
 
 			zBoton = botonPulsado.getZona();
 			zImagen = vista.getZonaActual();

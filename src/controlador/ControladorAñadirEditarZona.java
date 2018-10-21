@@ -9,21 +9,21 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
 
 import modelo.Casa;
-import vista.DialogoAñadirEditarZona;
+import vista.DialogoA�adirEditarZona;
 import vista.SingleRootFileSystemView;
 
-public class ControladorAñadirEditarZona implements ActionListener {
+public class ControladorA�adirEditarZona implements ActionListener {
 
-	DialogoAñadirEditarZona vista;
+	DialogoA�adirEditarZona vista;
 	String img;
 	Casa casa;
 	String tipo;
-	boolean fileSelected = false, estaAñadiendo;
+	boolean fileSelected = false, estaA�adiendo;
 
-	public ControladorAñadirEditarZona(DialogoAñadirEditarZona vista, Casa casa, boolean estaAñadiendo) {
+	public ControladorA�adirEditarZona(DialogoA�adirEditarZona vista, Casa casa, boolean estaA�adiendo) {
 		this.vista = vista;
 		this.casa = casa;
-		this.estaAñadiendo = estaAñadiendo;
+		this.estaA�adiendo = estaA�adiendo;
 	}
 
 	@Override
@@ -34,29 +34,29 @@ public class ControladorAñadirEditarZona implements ActionListener {
 		int nextValue;
 
 		if (e.getActionCommand().equals("ok")) {
-			int tamaño = casa.getSizeByType(tipo);					  
+			int tama�o = casa.getSizeByType(tipo);					  
 			if (!fileSelected) {
 				img = tipo + ".png";
 			}
 			nextValue = casa.getNextValue(tipo);
 			numString = vista.getNumToString(nextValue);
-			if (estaAñadiendo) {
-				if (tamaño < 5) {
+			if (estaA�adiendo) {
+				if (tama�o < 5) {
 					vista.addZonaToCasa(tipo + " " + numString, img);
 				} else {
 
-					JOptionPane.showMessageDialog(vista, "No puedes añadir mas de 5 zonas del mismo tipo", "Error",
+					JOptionPane.showMessageDialog(vista, "No puedes A�adir mas de 5 zonas del mismo tipo", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 			} else {
 
-				if (tamaño < 5) {
+				if (tama�o < 5) {
 					if (!vista.getSelectedZone().getTipoZona().equalsIgnoreCase(tipo)) {
 						vista.getSelectedZone().setNombre(tipo + " " + numString);
 					}
 				} else {
 
-					JOptionPane.showMessageDialog(vista, "No puedes añadir mas de 5 zonas del mismo tipo", "Error",
+					JOptionPane.showMessageDialog(vista, "No puedes A�adir mas de 5 zonas del mismo tipo", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 				vista.getSelectedZone().setImage(img);

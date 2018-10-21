@@ -38,16 +38,19 @@ import modelo.Casa;
 import modelo.Zona;
 
 public class VentanaPrincipal extends JFrame implements Observer {
-	final static String PATHIMG = "Imagenes/";
+	static final String PATHIMG = "Imagenes/";
 	int flag = 0;
-	JPanel panelBotones, pListaZonas;
+	JPanel panelBotones;
+	JPanel pListaZonas;
 
 	SpeechRecognizer reconocedor;
 	VozAsistente asistente;
 
 	MiPanelImgAndEDs panelCentral;
 	JSplitPane panelPrincipal;
-	JButton bMute, bConfig, bSalir;
+	JButton bMute;
+	JButton bConfig;
+	JButton bSalir;
 	Boolean mute = false;
 	JLabel zoneName;
 	RelojFrame reloj;
@@ -58,9 +61,11 @@ public class VentanaPrincipal extends JFrame implements Observer {
 
 	Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-	List<MiBotonZona> listaBotonesZonas;
+	private List<MiBotonZona> listaBotonesZonas;
 
-	AbstractAction accMute, accConfig, accSalir;
+	AbstractAction accMute;
+	AbstractAction accConfig;
+	AbstractAction accSalir;
 
 	public VentanaPrincipal() {
 		super("Menu principal");
@@ -97,7 +102,7 @@ public class VentanaPrincipal extends JFrame implements Observer {
 
 	private void crearAcciones() {
 		accMute = new MiAccion("", new ImageIcon("Imagenes/Mic.png"), "Silenciar el programa", KeyEvent.VK_M);
-		accConfig = new MiAccion("", new ImageIcon("Imagenes/ajuste.png"), "Acceder al menu de configuraciÃ³n",
+		accConfig = new MiAccion("", new ImageIcon("Imagenes/ajuste.png"), "Acceder al menu de configuración",
 				KeyEvent.VK_C);
 		accSalir = new MiAccion("", new ImageIcon("Imagenes/Salir.png"), "Salir del programa", KeyEvent.VK_X);
 
@@ -114,7 +119,6 @@ public class VentanaPrincipal extends JFrame implements Observer {
 		int posDivider = (int) toolkit.getScreenSize().getWidth() * 3 / 4;
 		panelPrincipal = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, crearPanelHoraImagen(), crearPanelListaZonas());
 		panelPrincipal.setDividerLocation(posDivider);
-		System.out.println("----------------------" + toolkit.getScreenSize().getWidth() * 3 / 4);
 		panelPrincipal.setDividerSize(5);
 		panelPrincipal.setEnabled(false); // Para que el divider no se pueda
 											// seleccionar
@@ -125,7 +129,6 @@ public class VentanaPrincipal extends JFrame implements Observer {
 	private Component crearPanelListaZonas() {
 		pListaZonas = new JPanel(new GridLayout(casa.getSize() - 1, 1));
 		pListaZonas.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-		// inicializarZonas(); //TODO cargar la casa con sus casa
 		for (Zona z : casa.getCopiaLista()) {
 			if (!z.isSelected()) {
 				pListaZonas.add(crearBotonZona(z, z.getNombre()));
@@ -315,7 +318,6 @@ public class VentanaPrincipal extends JFrame implements Observer {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
 
 		}
 	}
@@ -325,8 +327,7 @@ public class VentanaPrincipal extends JFrame implements Observer {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log("Exception", e);
 		}
 		VentanaPrincipal p = new VentanaPrincipal();
 	}

@@ -1,5 +1,4 @@
 package vista;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -17,7 +16,8 @@ import javax.swing.Timer;
 
 public class RelojFrame extends JLabel{
 	Calendar calendario;
-	int hora, minutos;
+	int hora;
+	int minutos;
 	private JLabel label;
 
 	public RelojFrame() {
@@ -34,8 +34,7 @@ public class RelojFrame extends JLabel{
 			font = Font.createFont(Font.TRUETYPE_FONT, new File("Fonts/digital-7 (italic).ttf"));
 			font = font.deriveFont(Font.BOLD,170);
 		} catch (FontFormatException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log("Exception", e);
 		}
 		Timer timer = new Timer(10, new ActionListener() {
 			@Override

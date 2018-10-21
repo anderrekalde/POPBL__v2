@@ -43,9 +43,7 @@ public class SingleRootFileSystemView extends FileSystemView
 	@Override
 	public File createNewFolder(File containingDir)
 	{
-		File folder = new File(containingDir, "New Folder");
-		//folder.mkdir(); //Comentado para que no se creen carpetas
-		return folder;
+		return new File(containingDir, "New Folder");
 	}
 
 	@Override

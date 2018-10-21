@@ -1,7 +1,6 @@
 package application;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
@@ -16,7 +15,6 @@ import controlador.ControladorVoz;
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
-import edu.cmu.sphinx.result.WordResult;
 import modelo.Casa;
 import vista.VentanaPrincipal;
 
@@ -41,7 +39,6 @@ public class SpeechRecognizer {
 	public SpeechRecognizer(VentanaPrincipal vista,  Casa casa) {
 
 		controladorVoz = new ControladorVoz(vista, casa);
-		//vozAsistente = new VozAsistente();
 		// Loading Message
 		logger.log(Level.INFO, "Loading Speech Recognizer...\n");
 
@@ -53,27 +50,25 @@ public class SpeechRecognizer {
 
 		configuration.setLanguageModelPath("resource/esp_lm/es-20k.lm");
 
-		// Load model from the jar
-		// configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-		// configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+		Load model from the jar
+		configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+		configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
 
-		// ====================================================================================
-		// =====================READ
-		// THIS!!!===============================================
-		// Uncomment this line of code if you want the recognizer to recognize
-		// every word of the language
-		// you are using , here it is English for example
-		// ====================================================================================
-		// configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
+		/*====================================================================================
+		=====================READ
+		THIS!!!===============================================
+		Uncomment this line of code if you want the recognizer to recognize
+		every word of the language
+		you are using , here it is English for example
+		====================================================================================
+		configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
+		====================================================================================
+		=====================READ
+		THIS!!!===============================================
+		If you don't want to use a grammar file comment below 3 lines and
+		uncomment the above line for language model
+		====================================================================================*/
 
-		// ====================================================================================
-		// =====================READ
-		// THIS!!!===============================================
-		// If you don't want to use a grammar file comment below 3 lines and
-		// uncomment the above line for language model
-		// ====================================================================================
-
-		// Grammar
 		configuration.setGrammarPath("resource/grammars");
 		configuration.setGrammarName("grammar");
 		configuration.setUseGrammar(true);
@@ -82,10 +77,6 @@ public class SpeechRecognizer {
 			recognizer = new LiveSpeechRecognizer(configuration);
 		} catch (IOException ex) {
 			logger.log(Level.SEVERE, null, ex);
-		}
-
-		// Start recognition process pruning previously cached data.
-		// recognizer.startRecognition(true);
 
 		// Check if needed resources are available
 		startResourcesThread();
@@ -98,7 +89,7 @@ public class SpeechRecognizer {
 	/**
 	 * Starts the Speech Recognition Thread
 	 */
-	public synchronized void startSpeechRecognition(VentanaPrincipal vista) {
+	public synchronized void startSpeechRecognition() {
 
 		// Check lock
 		if (speechRecognizerThreadRunning)
@@ -138,26 +129,18 @@ public class SpeechRecognizer {
 								// Get the hypothesis
 								speechRecognitionResult = speechResult.getHypothesis();
 
-								// You said?
-								System.out.println("You said: [" + speechRecognitionResult + "]\n");
-
 								// palabra clave
-								if (clave == false && this.getSpeech().equals("casa")) {
+								if (!clave && this.getSpeech().equals("casa")) {
 									clave = true;
-									System.out.println("Ha recogido la clave");
-									//Toolkit.getDefaultToolkit().beep();
 
 									palabra = "";
 									controladorVoz.filtradorZonas("casa");
 
 									Temporizador(5);
 
-								} else if (clave == true) {
-									//palabra = palabra + this.getSpeech();
+								} else if (clave) {
 									palabra = this.getSpeech();
-									//vozAsistente.speak(palabra);
 									controladorVoz.filtradorZonas(palabra);
-									System.out.println("Ha dicho la palabra despues de la clave");
 								}
 							}
 						} else {
@@ -167,6 +150,7 @@ public class SpeechRecognizer {
 				} catch (Exception ex) {
 					logger.log(Level.WARNING, null, ex);
 					speechRecognizerThreadRunning = false;
+					throw ex;
 				}
 
 				logger.log(Level.INFO, "SpeechThread has exited...");
@@ -236,8 +220,7 @@ public class SpeechRecognizer {
 	 */
 	public void Temporizador(int segundos) {
 		timer = new Timer();
-		timer.schedule(new Task(), segundos * 1000);
-		System.out.println("Empieza timer");
+		timer.schedule(new Task(), segundos * (long)1000);
 		
 		
 	}
@@ -246,8 +229,6 @@ public class SpeechRecognizer {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
-			System.out.println("Timer acaba");
 			clave = false;
 			timer.cancel();
 

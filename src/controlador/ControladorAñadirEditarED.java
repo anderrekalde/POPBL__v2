@@ -8,45 +8,71 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
 
-import modelo.ED;
-import vista.DialogoAÃ±adirEditarED;
+import modelo.Casa;
+import vista.DialogoAñadirEditarZona;
 import vista.SingleRootFileSystemView;
 
-public class ControladorAÃ±adirEditarED implements ActionListener {
+public class ControladorAñadirEditarED implements ActionListener {
 
-	DialogoAÃ±adirEditarED vista;
+	DialogoAñadirEditarZona vista;
+	String img;
+	Casa casa;
+	String tipo;
+	boolean fileSelected = false;
+	boolean estaAñadiendo;
 
-	public ControladorAÃ±adirEditarED(DialogoAÃ±adirEditarED vista) {
+	public ControladorAñadirEditarED(DialogoAñadirEditarZona vista, Casa casa, boolean estaAñadiendo) {
 		this.vista = vista;
+		this.casa = casa;
+		this.estaAñadiendo = estaAñadiendo;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ED ed;
-		switch (e.getActionCommand()) {
-		case "ok":
-			try{
-			vista.crearEditarED(vista.getSelectedRadioButton());
-			vista.dispose();
-			}catch(Exception ex){
-				JOptionPane.showMessageDialog(vista, "Introduce los datos correctamente", "Error",
-						JOptionPane.ERROR_MESSAGE);
+		String numString;
+		tipo = (String) vista.getTipoZonaCombo().getSelectedItem();
+		
+		int nextValue;
+
+		if (e.getActionCommand().equals("ok")) {
+			int tamaño = casa.getSizeByType(tipo);					  
+			if (!fileSelected) {
+				img = tipo + ".png";
 			}
-			break;
-		case "cancel":
-			vista.dispose();
-			break;
-		case "lista":
-			JFileChooser chooserLista = new JFileChooser();
-			chooserLista.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			chooserLista.setVisible(true);
-			int returnValLista = chooserLista.showOpenDialog(vista);
-			if (returnValLista == JFileChooser.APPROVE_OPTION) {
-				vista.setFicheroListaProgramas(chooserLista.getSelectedFile().getAbsolutePath());
-				vista.gettProgramas().setText(vista.getProgramasFromFile(chooserLista.getSelectedFile().getAbsolutePath()));
+			nextValue = casa.getNextValue(tipo);
+			numString = vista.getNumToString(nextValue);
+			if (estaAñadiendo) {
+				if (tamaño < 5) {
+					vista.addZonaToCasa(tipo + " " + numString, img);
+				} else {
+
+					JOptionPane.showMessageDialog(vista, "No puedes añadir mas de 5 zonas del mismo tipo", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			} else {
+
+				if (tamaño < 5) {
+					if (!vista.getSelectedZone().getTipoZona().equalsIgnoreCase(tipo)) {
+						vista.getSelectedZone().setNombre(tipo + " " + numString);
+					}
+				} else {
+
+					JOptionPane.showMessageDialog(vista, "No puedes añadir mas de 5 zonas del mismo tipo", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				vista.getSelectedZone().setImage(img);
 			}
-			break;
-		case "img":
+			vista.dispose();
+
+			vista.updateList();
+			vista.getListaSeleccion().setSelectedIndex(0);
+		}
+
+		if (e.getActionCommand().equals("cancel")) {
+			vista.dispose();
+		}
+
+		if (e.getActionCommand().equals("imagen")) {
 			File dir = new File("Imagenes/");
 			FileSystemView fsv = new SingleRootFileSystemView(dir);
 			JFileChooser chooserImg = new JFileChooser(fsv);
@@ -54,38 +80,11 @@ public class ControladorAÃ±adirEditarED implements ActionListener {
 			chooserImg.setVisible(true);
 			int returnVal = chooserImg.showOpenDialog(vista);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				vista.setFicheroImagen(chooserImg.getSelectedFile().getName());
-				vista.gettImg().setText(chooserImg.getSelectedFile().getName());
+				img = chooserImg.getSelectedFile().getName();
+				vista.gettRuta().setText(chooserImg.getSelectedFile().getName());
+				fileSelected = true;
 			}
-			break;
-		case "Normal":
-			vista.getNombreED().removeAllItems();
-			vista.setEverything("Normal");
-			for (String s : vista.getOpcionesNormal()) {
-				vista.getNombreED().addItem(s);
-			}
-			break;
-		case "Regulable":
-			vista.getNombreED().removeAllItems();
-			vista.setEverything("Regulable");
-			for (String s : vista.getOpcionesRegulable()) {
-				vista.getNombreED().addItem(s);
-			}
-			break;
-		case "Programable":
-			vista.getNombreED().removeAllItems();
-			vista.setEverything("Programable");
-			for (String s : vista.getOpcionesProgramable()) {
-				vista.getNombreED().addItem(s);
-			}
-			break;
-		case "ProgReg":
-			vista.getNombreED().removeAllItems();
-			vista.setEverything("ProgReg");
-			for (String s : vista.getOpcionesProgReg()) {
-				vista.getNombreED().addItem(s);
-			}
-			break;
 		}
 	}
+
 }

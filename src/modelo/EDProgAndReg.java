@@ -1,12 +1,13 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EDProgAndReg extends EDProgramable {
 	String programa;
 	List<String> listaProgramas;
-	int vMin, vMax, valor;
+	int vMin;
+	int vMax;
+	int valor;
 
 	public EDProgAndReg(String n, String img, boolean estado, int vMin, int vMax, int valor, String programa, List<String> lista) {
 		super(n, img, estado, programa, lista);
@@ -48,8 +49,7 @@ public class EDProgAndReg extends EDProgramable {
 
 	@Override
 	public String toStringFile() {
-		String s = "&"+super.toStringFile().substring(1)+"$"+this.vMin+"$"+this.vMax+"$"+this.valor;
-		return s;
+		return ("&"+super.toStringFile().substring(1)+"$"+this.vMin+"$"+this.vMax+"$"+this.valor);
 	}
 
 	@Override

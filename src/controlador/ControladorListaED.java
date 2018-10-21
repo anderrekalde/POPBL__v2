@@ -30,10 +30,6 @@ public class ControladorListaED implements ActionListener {
 		vista.setFlag(vista.getFlag() + 1);
 
 		if (vista.getFlag() == 1) {
-
-			System.out.println("zona :" + vista.getZonaActual());
-			System.out.println(e.getActionCommand());
-
 			List<Zona> listaZonas = casa.getCopiaLista();
 			String tipo = "";
 			for (Zona z : listaZonas) {

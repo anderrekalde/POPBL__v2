@@ -23,9 +23,9 @@ public class ControladorToolBarTiposZonaConfig implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String tipo;
 		switch (e.getActionCommand()) {
-		case "BaÃ±os":
-			tipo = "BaÃ±o";
-			vista.setActualType("BaÃ±o");
+		case "Baños":
+			tipo = "Baño";
+			vista.setActualType("Baño");
 			vista.getListaSeleccion().setListData(casaModelo.getStringsByType(tipo));
 			break;
 		case "Cocinas":
@@ -34,19 +34,21 @@ public class ControladorToolBarTiposZonaConfig implements ActionListener {
 			vista.getListaSeleccion().setListData(casaModelo.getStringsByType(tipo));
 			break;
 		case "Habitaciones":
-			tipo = "HabitaciÃ³n";
-			vista.setActualType("HabitaciÃ³n");
+			tipo = "Habitación";
+			vista.setActualType("Habitación");
 			vista.getListaSeleccion().setListData(casaModelo.getStringsByType(tipo));
 			break;
 		case "Jardines":
-			tipo = "JardÃ­n";
-			vista.setActualType("JardÃ­n");
+			tipo = "Jardín";
+			vista.setActualType("Jardín");
 			vista.getListaSeleccion().setListData(casaModelo.getStringsByType(tipo));
 			break;
 		case "Salones":
-			tipo = "SalÃ³n";
-			vista.setActualType("SalÃ³n");
+			tipo = "Salón";
+			vista.setActualType("Salón");
 			vista.getListaSeleccion().setListData(casaModelo.getStringsByType(tipo));
+			break;
+		default:
 			break;
 		}
 		for (JButton b : vista.getListaBotonesAcciones()){

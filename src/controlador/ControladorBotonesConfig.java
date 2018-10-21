@@ -7,7 +7,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import modelo.Casa;
-import modelo.Zona;
 import vista.MenuConfig;
 import vista.VentanaPrincipal;
 
@@ -35,7 +34,6 @@ public class ControladorBotonesConfig implements ActionListener {
 				try {
 					casaConfig.setRutaCasaConfig(chooserImg.getSelectedFile().getAbsolutePath());
 					casaConfig.recargarDatos(casaConfig.getRutaCasaConfig());
-					// casaConfig.setRutaCasa(chooserImg.getSelectedFile().getAbsolutePath());
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(vistaMenu, "Este archivo no es compatible", "Error",
 							JOptionPane.ERROR_MESSAGE);
@@ -47,6 +45,8 @@ public class ControladorBotonesConfig implements ActionListener {
 			casaConfig.guardarDatosFichero(casaConfig.getRutaCasaConfig());
 			vistaMenu.dispose();
 			vistaPrincipal.miRepintar();
+			break;
+		default:
 			break;
 		}
 	}

@@ -1,16 +1,15 @@
 package modelo;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.AbstractListModel;
-import javax.swing.ListModel;
 
 public class Casa{
 	private String rutaCasaConfig = "Ficheros/Casa.txt";
@@ -28,16 +27,18 @@ public class Casa{
 	public List<Zona> cargarDatosFichero(String rutaCasa) {
 		String linea;
 		Zona z;
-		List<Zona> lista = new ArrayList<>();
+		List<Zona> list = new ArrayList<>();
 		
-		try (BufferedReader in = new BufferedReader(new FileReader(rutaCasa))) {
+		try (BufferedReader in = new BufferedReader(new InputStreamReader(
+			    new FileInputStream(rutaCasa), "UTF-8"))) {
 			
 			while ((linea = in.readLine()) != null) {
-				lista.add(z = new Zona(linea));
+				z = new Zona(linea);
+				list.add(z);
 				while (!(linea = in.readLine()).contains("*")) {
 					if (linea.startsWith("#")){
 						z.addED(new EDRegulable(linea.substring(1)));				
-					} else if (linea.startsWith("â‚¬")){
+					} else if (linea.startsWith("€")){
 						z.addED(new EDProgramable(linea.substring(1)));						
 					} else if (linea.startsWith("&")){
 						z.addED(new EDProgAndReg(linea.substring(1)));	
@@ -48,18 +49,15 @@ public class Casa{
 				
 			}
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (FileNotFoundException e || IOException e) {
+			LOGGER.log("Exception", e);
 		}
 		return lista;
 	}
 	
 	public void guardarDatosFichero(String rutaCasa) {
-		try (PrintWriter out = new PrintWriter(new FileWriter(rutaCasa))) {
+		try (PrintWriter out = new PrintWriter(new OutputStreamWriter(
+				new FileOutputStream(rutaCasa), "UTF-8"))) {
 
 			for (Zona zona : lista) {
 				out.println(zona.toStringFile());
@@ -69,12 +67,8 @@ public class Casa{
 				out.println("*");
 			}
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (FileNotFoundException e ) {
+			LOGGER.log("Exception", e);
 		}
 
 	}

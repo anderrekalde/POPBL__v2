@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,51 +23,64 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import controlador.ControladorAñadirEditarED;
+import controlador.ControladorA�adirEditarED;
 import modelo.ED;
 import modelo.EDProgAndReg;
 import modelo.EDProgramable;
 import modelo.EDRegulable;
 import modelo.Zona;
 
-public class DialogoAñadirEditarED extends JDialog {
+public class DialogoA�adirEditarED extends JDialog {
 
-	String opcionesNormal[] = { "Luz", "Agua", "Persiana" };
-	String opcionesRegulable[] = { "Luz", "Temperatura" };
-	String opcionesProgramable[] = { "Lavadora" };
-	String opcionesProgReg[] = { "Horno", "Televisión", "Radio" };
+	String []opcionesNormal = { "Luz", "Agua", "Ventana" };
+	String []opcionesRegulable = { "Luz", "Temperatura" };
+	String []opcionesProgramable = { "Lavadora" };
+	String []opcionesProgReg = { "Horno", "Televisi�n", "Radio" };
 
-	String ficheroListaProgramas, ficheroImagen;
+	String ficheroListaProgramas;
+	String ficheroImagen;
 
-	boolean estaAñadiendo;
+	boolean estaA�adiendo;
 
-	JTextField lVmaxtf, lVmintf, tImg, tProgramas;
+	JTextField lVmaxtf;
+	JTextField lVmintf;
+	JTextField tImg;
+	JTextField tProgramas;
 	JComboBox<String> nombreED;
-	JLabel lTipos, lVmax, lVmin, lImagen, lLista;
-	JButton bOk, bCancel, bImg, bLista;
+	JLabel lTipos;
+	JLabel lVmax;
+	JLabel lVmin;
+	JLabel lImagen;
+	JLabel lLista;
+	JButton bOk;
+	JButton bCancel;
+	JButton bImg;
+	JButton bLista;
 	JPanel panelRadioButtons;
 
-	ControladorAñadirEditarED controladorDialogoED;
+	ControladorA�adirEditarED controladorDialogoED;
 
 	DialogoEditListEDZona vista;
 	ED selectedED;
 
-	private JRadioButton botonNormal, botonRegulable, botonProgramable, botonProgReg;
+	private JRadioButton botonNormal;
+	private JRadioButton botonRegulable;
+	private JRadioButton botonProgramable;
+	private JRadioButton botonProgReg;
 	private ButtonGroup group;
 
 	JPanel panelVentana;
 
-	public DialogoAñadirEditarED(DialogoEditListEDZona ventana, String titulo, boolean modo, boolean estaAñadiendo) {
+	public DialogoA�adirEditarED(DialogoEditListEDZona ventana, String titulo, boolean modo, boolean estaA�adiendo) {
 		super(ventana, titulo, modo);
-		this.estaAñadiendo = estaAñadiendo;
-		controladorDialogoED = new ControladorAñadirEditarED(this);
+		this.estaA�adiendo = estaA�adiendo;
+		//controladorDialogoED = new ControladorA�adirEditarED(this);
 		vista = ventana;
 		this.selectedED = vista.getSelectedED();
 
 		this.setSize(600, 800);
 		this.setLocation(1000, 200);
 		this.setContentPane(crearPanelVentana());
-		// this.pack();
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
@@ -94,26 +108,29 @@ public class DialogoAñadirEditarED extends JDialog {
 
 		panel.setBorder(BorderFactory.createEmptyBorder(40, 20, 20, 20));
 
-		bOk = new JButton("OK");
-		bOk.setActionCommand("ok");
-		bOk.addActionListener(controladorDialogoED);
-
-		bCancel = new JButton("Cancelar");
-		bCancel.setActionCommand("cancel");
-		bCancel.addActionListener(controladorDialogoED);
+		bOk = (JButton) crearBotonAction("OK","ok",controladorDialogoED);
+		bCancel = (JButton) crearBotonAction("Cancelar","cancel",controladorDialogoED);
 
 		panel.add(bOk);
 		panel.add(bCancel);
 		return panel;
 	}
 
+	private Component crearBotonAction(String s, String action, ActionListener listener){
+		JButton btn = new JButton(s);
+		btn.setActionCommand(action);
+		btn.addActionListener(listener);
+		return btn;
+	}
+	
 	private Component panelProgramas() {
 		JPanel panel = new JPanel(new GridLayout(1, 2));
 
 		lLista = new JLabel("Lista programas");
 		JPanel p;
+		p = crearPanelFileChooser();
 		panel.add(lLista);
-		panel.add(p = crearPanelFileChooser());
+		panel.add(p);
 		p.setAlignmentX(Component.CENTER_ALIGNMENT);
 		p.setAlignmentY(Component.CENTER_ALIGNMENT);
 
@@ -125,9 +142,9 @@ public class DialogoAñadirEditarED extends JDialog {
 
 		lImagen = new JLabel("Imagen");
 		JPanel p;
-
+		p = crearPanelFileChooserImg();
 		panel.add(lImagen);
-		panel.add(p = crearPanelFileChooserImg());
+		panel.add(p);
 		p.setAlignmentX(Component.CENTER_ALIGNMENT);
 		p.setAlignmentY(Component.CENTER_ALIGNMENT);
 
@@ -138,13 +155,11 @@ public class DialogoAñadirEditarED extends JDialog {
 		JPanel p = new JPanel(new BorderLayout());
 		String programas = "";
 
-		bLista = new JButton(" ... ");
-		bLista.setActionCommand("lista");
-		bLista.addActionListener(controladorDialogoED);
+		bLista = (JButton) crearBotonAction(" ... ","lista",controladorDialogoED);
 
 		tProgramas = new JTextField();
 
-		if (!estaAñadiendo) {
+		if (!estaA�adiendo) {
 			if (selectedED instanceof EDProgramable || selectedED instanceof EDProgAndReg) {
 				bLista.setEnabled(true);
 				tProgramas.setEnabled(true);
@@ -177,9 +192,7 @@ public class DialogoAñadirEditarED extends JDialog {
 	private JPanel crearPanelFileChooserImg() {
 		JPanel p = new JPanel(new BorderLayout());
 
-		bImg = new JButton(" ... ");
-		bImg.setActionCommand("img");
-		bImg.addActionListener(controladorDialogoED);
+		bImg = (JButton) crearBotonAction(" ... ","img",controladorDialogoED);
 		if (selectedED != null) {
 			ficheroImagen = selectedED.getTipoED() + ".png";
 		}
@@ -203,7 +216,7 @@ public class DialogoAñadirEditarED extends JDialog {
 		lVmaxtf = new JTextField();
 		lVmaxtf.setEnabled(false);
 
-		if (!estaAñadiendo) {
+		if (!estaA�adiendo) {
 			if (selectedED instanceof EDRegulable || selectedED instanceof EDProgAndReg) {
 				lVmintf.setEnabled(true);
 				lVmaxtf.setEnabled(true);
@@ -243,17 +256,21 @@ public class DialogoAñadirEditarED extends JDialog {
 		panelRadioButtons = new JPanel(new GridLayout(2, 2));
 
 		group = new ButtonGroup();
-		group.add(botonNormal = crearRadioButton("Normal"));
-		group.add(botonProgramable = crearRadioButton("Programable"));
-		group.add(botonRegulable = crearRadioButton("Regulable"));
-		group.add(botonProgReg = crearRadioButton("ProgReg"));
+		botonNormal = crearRadioButton("Normal");
+		botonProgramable = crearRadioButton("Programable");
+		botonRegulable = crearRadioButton("Regulable");
+		botonProgReg = crearRadioButton("ProgReg");
+		group.add(botonNormal);
+		group.add(botonProgramable);
+		group.add(botonRegulable);
+		group.add(botonProgReg);
 
-		if (!estaAñadiendo) {
+		if (!estaA�adiendo) {
 			if (selectedED instanceof EDRegulable) {
 				botonRegulable.setSelected(true);
 			} else if (selectedED instanceof EDProgramable) {
 				botonProgramable.setSelected(true);
-			} else if (selectedED instanceof EDProgramable) {
+			} else if (selectedED instanceof EDProgAndReg) {
 				botonProgReg.setSelected(true);
 			} else if (selectedED instanceof ED) {
 				botonNormal.setSelected(true);
@@ -272,8 +289,8 @@ public class DialogoAñadirEditarED extends JDialog {
 		return panelRadioButtons;
 	}
 
-	public boolean isEstaAñadiendo() {
-		return estaAñadiendo;
+	public boolean isEstaA�adiendo() {
+		return estaA�adiendo;
 	}
 
 	private Component panelNombre() {
@@ -281,7 +298,7 @@ public class DialogoAñadirEditarED extends JDialog {
 
 		panel.setBorder(BorderFactory.createEmptyBorder(40, 0, 40, 20));
 
-		lTipos = new JLabel("Tipo de electrodoméstico");
+		lTipos = new JLabel("Tipo de electrodom�stico");
 
 		if (botonNormal.isSelected()) {
 			nombreED = new JComboBox<>(opcionesNormal);
@@ -331,6 +348,12 @@ public class DialogoAñadirEditarED extends JDialog {
 			lVmintf.setEnabled(true);
 			bLista.setEnabled(true);
 			tProgramas.setEnabled(true);
+			break;
+		default:			
+			lVmaxtf.setEnabled(false);
+			lVmintf.setEnabled(false);
+			bLista.setEnabled(false);
+			tProgramas.setEnabled(false);
 			break;
 		}
 	}
@@ -437,20 +460,23 @@ public class DialogoAñadirEditarED extends JDialog {
 		case 10:
 			s += "diez";
 			break;
+		default:
+			break;
 		}
 		return s;
 	}
 
 	public void crearEditarED(JRadioButton selectedRadioButton) {
 		Zona z = vista.getSelectedZona();
-		String numString, tipo = this.nombreED.getSelectedItem().toString();
+		String numString;
+		String tipo = this.nombreED.getSelectedItem().toString();
 		ED ed;
 		int nextValue;
 		List<String> lListaProgramas = new ArrayList<>();
 		String[] listaProgramas;
 		nextValue = z.getNextValue(tipo);
 		numString = getNumToString(nextValue);
-		if (!estaAñadiendo) {
+		if (!estaA�adiendo) {
 			z.removeED(selectedED);
 		}
 		switch (selectedRadioButton.getText()) {
@@ -482,7 +508,7 @@ public class DialogoAñadirEditarED extends JDialog {
 		z.addED(ed);
 	}
 
-	public String getProgramasFromFile(String absolutePath) {
+	public String getProgramasFromFile() {
 		String s = "";
 		String linea;
 
@@ -490,15 +516,11 @@ public class DialogoAñadirEditarED extends JDialog {
 
 			while ((linea = in.readLine()) != null) {
 				s += linea;
-				System.out.println(s);
+				logger.log("Exception", s);
 			}
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (FileNotFoundException e || IOException e) {
+			logger.log("Exception", e);
 		}
 
 		return s;

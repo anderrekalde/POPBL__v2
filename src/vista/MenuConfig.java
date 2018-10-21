@@ -37,8 +37,45 @@ import controlador.ControladorAccionesMenuConfig;
 import modelo.Casa;
 import modelo.Zona;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JToolBar;
+import javax.swing.ListSelectionModel;
+
+import controlador.ControladorBotonesConfig;
+import controlador.ControladorToolBarTiposZonaConfig;
+import controlador.ControladorListaZonasConfig;
+import controlador.ControladorAccionesMenuConfig;
+import modelo.Casa;
+import modelo.Zona;
+
 public class MenuConfig extends JFrame {
-	final static String PATHIMG = "Imagenes/";
+	static final String PATHIMG = "Imagenes/";
 	String actualType;
 	Casa casaMenu;
 	
@@ -49,10 +86,20 @@ public class MenuConfig extends JFrame {
 	ControladorListaZonasConfig controladorListaZonas;
 	ControladorBotonesConfig controladorBotones;
 
-	AbstractAction accCargar, accSalir, accAnadir, accBorrar, accEditar, accBaÃ±o, accCocina, accSalon, accHabitacion,
-			accJardin, accOtros;
+	AbstractAction accCargar;
+	AbstractAction accSalir;
+	AbstractAction accAnadir;
+	AbstractAction accBorrar;
+	AbstractAction accEditar;
+	AbstractAction accBaño;
+	AbstractAction accCocina;
+	AbstractAction accSalon;
+	AbstractAction accHabitacion;
+	AbstractAction accJardin;
+	AbstractAction accOtros;
 
-	JButton bSalir, bCargar;
+	JButton bSalir;
+	JButton bCargar;
 	JMenuBar barra;
 	JMenu menuEdit;
 	JMenuItem opcionMenu;
@@ -62,8 +109,8 @@ public class MenuConfig extends JFrame {
 	
 	RendererZonaConfig renderer;
 	
-	List<JButton> listaBotonesAcciones;
-	List<Zona> listaPorTipos;
+	private List<JButton> listaBotonesAcciones;
+	private List<Zona> listaPorTipos;
 
 	Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -130,7 +177,7 @@ public class MenuConfig extends JFrame {
 	}
 
 	private Component crearPanelImagen() {
-		panelImg = new MiPanelImg(toolkit.createImage(PATHIMG + "BaÃ±o.png"));
+		panelImg = new MiPanelImg(toolkit.createImage(PATHIMG + "Baño.png"));
 
 		return panelImg;
 	}
@@ -138,9 +185,8 @@ public class MenuConfig extends JFrame {
 	private Component crearPanelSalas() {
 		panelLista = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		actualType = "baÃ±o";
+		actualType = "baño";
 		listaSeleccion = new JList<>();
-		//listaSeleccion.setModel(casa);
 		listaSeleccion.setListData(casaMenu.getStringsByType(actualType));
 		listaSeleccion.setCellRenderer(renderer);
 		listaSeleccion.setSelectedIndex(0);
@@ -161,20 +207,21 @@ public class MenuConfig extends JFrame {
 	}
 
 	private JMenu crearMenuAcciones() {
+		String arial="arial";
 		menuEdit = new JMenu("Menu");
-		menuEdit.setFont(new Font("arial", Font.PLAIN, 30));
+		menuEdit.setFont(new Font(arial, Font.PLAIN, 30));
 		menuEdit.setMnemonic(KeyEvent.VK_A);
 
 		opcionMenu = menuEdit.add(accAnadir);
-		opcionMenu.setFont(new Font("arial", Font.PLAIN, 30));
+		opcionMenu.setFont(new Font(arial, Font.PLAIN, 30));
 		opcionMenu.addActionListener(controladorConfig);
-		opcionMenu.setActionCommand("AÃ±adir");
+		opcionMenu.setActionCommand("Añadir");
 		opcionMenu = menuEdit.add(accBorrar);
-		opcionMenu.setFont(new Font("arial", Font.PLAIN, 30));
+		opcionMenu.setFont(new Font(arial, Font.PLAIN, 30));
 		opcionMenu.addActionListener(controladorConfig);
 		opcionMenu.setActionCommand("Borrar");
 		opcionMenu = menuEdit.add(accEditar);
-		opcionMenu.setFont(new Font("arial", Font.PLAIN, 30));
+		opcionMenu.setFont(new Font(arial, Font.PLAIN, 30));
 		opcionMenu.addActionListener(controladorConfig);
 		opcionMenu.setActionCommand("Editar");
 
@@ -186,8 +233,8 @@ public class MenuConfig extends JFrame {
 		toolBar.setLayout(new GridLayout(1, 6));
 		toolBar.setBorder(BorderFactory.createRaisedBevelBorder());
 
-		toolBar.add(crearBotonToolBar(accBaÃ±o));
-		accBaÃ±o.setEnabled(false);
+		toolBar.add(crearBotonToolBar(accBaño));
+		accBaño.setEnabled(false);
 		toolBar.add(crearBotonToolBar(accSalon));
 		toolBar.add(crearBotonToolBar(accCocina));
 		toolBar.add(crearBotonToolBar(accHabitacion));
@@ -239,7 +286,8 @@ public class MenuConfig extends JFrame {
 	}
 
 	public void updateList() {
-		panelLista.setViewportView(listaSeleccion = new JList<>(casaMenu.getStringsByType(actualType)));
+		listaSeleccion = new JList<>(casaMenu.getStringsByType(actualType));
+		panelLista.setViewportView(listaSeleccion);
 		listaSeleccion.setCellRenderer(renderer);
 		listaSeleccion.setSelectedIndex(0);
 		listaSeleccion.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -253,13 +301,13 @@ public class MenuConfig extends JFrame {
 		accCargar = new MiAccion("Cargar casa", new ImageIcon("Imagenes/Cargar.png"), "Cargar el fichero de una casa",
 				KeyEvent.VK_C);
 		accSalir = new MiAccion("Volver", new ImageIcon("Imagenes/Back.png"), "Salir del menu", KeyEvent.VK_V);
-		accAnadir = new MiAccion("AÃ±adir", new ImageIcon("Imagenes/AÃ±adir.png"),
-				"AÃ±ade una zona nueva", KeyEvent.VK_A);
+		accAnadir = new MiAccion("Añadir", new ImageIcon("Imagenes/Añadir.png"),
+				"Añade una zona nueva", KeyEvent.VK_A);
 		accBorrar = new MiAccion("Borrar", new ImageIcon("Imagenes/Eliminar.png"), "Borra la zona seleccionada",
 				KeyEvent.VK_B);
 		accEditar = new MiAccion("Editar", new ImageIcon("Imagenes/Editar.png"), "Edita la zona seleccionada",
 				KeyEvent.VK_E);
-		accBaÃ±o = new MiAccion("BaÃ±os", new ImageIcon("Imagenes/Agua.png"), "Muestra todos los baÃ±os", KeyEvent.VK_P);
+		accBaño = new MiAccion("Baños", new ImageIcon("Imagenes/Agua.png"), "Muestra todos los baños", KeyEvent.VK_P);
 		accSalon = new MiAccion("Salones", new ImageIcon("Imagenes/salonICON.png"), "Muestra todos los salones",
 				KeyEvent.VK_S);
 		accCocina = new MiAccion("Cocinas", new ImageIcon("Imagenes/cocinaICON.png"), "Muestra todas las cocinas",
@@ -283,19 +331,12 @@ public class MenuConfig extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public String toString() {
-			// TODO Auto-generated method stub
 			return texto;
 		}
 	}
-
-	/*public static void main(String[] args) {
-		MenuConfig p = new MenuConfig();
-
-	}*/
 }

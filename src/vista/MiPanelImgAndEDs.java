@@ -1,6 +1,5 @@
 package vista;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -22,7 +21,7 @@ public class MiPanelImgAndEDs extends JPanel {
 	Image imagen;
 	Zona zona;
 	VentanaPrincipal vista;
-	List<MiBotonED> listaBotonesPanel;
+	private List<MiBotonED> listaBotonesPanel;
 
 	ControladorListaED controladorED;
 
@@ -52,11 +51,8 @@ public class MiPanelImgAndEDs extends JPanel {
 		this.zona = zona;
 		this.imagen = zona.getImageIcon().getImage();
 		listaBotonesPanel.clear();
-		if (zona.getNombre().equals("Principal")) {
-
-		} else {
+		if (!zona.getNombre().equals("Principal")) {
 			this.add(crearPanelEDs());
-
 		}
 
 		repaint();

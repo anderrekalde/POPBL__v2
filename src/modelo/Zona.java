@@ -7,13 +7,20 @@ import java.util.Observable;
 import javax.swing.AbstractListModel;
 import javax.swing.ImageIcon;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.AbstractListModel;
+import javax.swing.ImageIcon;
+
 public class Zona extends AbstractListModel {
 	String nombre;
 	String imagen;
 	String tipoZona;
 	boolean seleccionado;
 	ImageIcon imageIcon;
-	List<ED> listaED;
+	private List<ED> listaED;
+	String ruta = "Imagenes/";
 	
 	int i = 0;
 
@@ -22,7 +29,7 @@ public class Zona extends AbstractListModel {
 		this.tipoZona = name.split(" ")[0];
 		this.imagen = imagen;
 		this.seleccionado = false;
-		this.imageIcon = new ImageIcon("Imagenes/" + imagen);
+		this.imageIcon = new ImageIcon(ruta + imagen);
 		listaED = new ArrayList<>();
 
 	}
@@ -33,7 +40,7 @@ public class Zona extends AbstractListModel {
 		this.tipoZona = nombre.split(" ")[0];
 		this.imagen = datos[1];
 		this.seleccionado = Boolean.parseBoolean(datos[2]);
-		this.imageIcon = new ImageIcon("Imagenes/" + imagen);
+		this.imageIcon = new ImageIcon(ruta + imagen);
 		listaED = new ArrayList<>();
 	}
 
@@ -55,15 +62,15 @@ public class Zona extends AbstractListModel {
 				listaPorTipo.add(ed);
 			}
 		}
-		for (int i = 1; i <= 5; i++) {
+		for (int j = 1; j <= 5; j++) {
 			estaCogido = false;
 			for (ED edTipo : listaPorTipo) {
-				if (edTipo.getIDdeNombre() == i) {
+				if (edTipo.getIDdeNombre() == j) {
 					estaCogido = true;
 				}
 			}
 			if (!estaCogido) {
-				return i;
+				return j;
 			}
 		}
 		return 0;
@@ -93,28 +100,28 @@ public class Zona extends AbstractListModel {
 	}
 
 	public int getIDdeNombre() {
-		int i;
+		int j;
 		switch (this.nombre.split(" ")[1]) {
 		case "uno":
-			i = 1;
+			j = 1;
 			break;
 		case "dos":
-			i = 2;
+			j = 2;
 			break;
 		case "tres":
-			i = 3;
+			j = 3;
 			break;
 		case "cuatro":
-			i = 4;
+			j = 4;
 			break;
 		case "cinco":
-			i = 5;
+			j = 5;
 			break;
 		default:
-			i = 0;
+			j = 0;
 			break;
 		}
-		return i;
+		return j;
 	}
 
 	public boolean isSelected() {
@@ -139,17 +146,15 @@ public class Zona extends AbstractListModel {
 
 	public void setImage(String img) {
 		this.imagen = img;
-		this.imageIcon = new ImageIcon("Imagenes/" + img);
+		this.imageIcon = new ImageIcon(ruta + img);
 	}
 
 	public void addED(ED ed) {
-		System.out.println("AÑADIR");
 		listaED.add(ed);
 		this.fireContentsChanged(listaED, 0, listaED.size());
 	}
 
 	public void removeED(ED ed) {
-		System.out.println("BORRAR");
 		listaED.remove(ed);
 		this.fireContentsChanged(listaED, 0, listaED.size());
 	}
@@ -165,7 +170,6 @@ public class Zona extends AbstractListModel {
 
 	@Override
 	public Object getElementAt(int index) {
-		System.out.println(i+"AAAAAAAAAAAAAAAAAAA"+listaED.size());
 		return listaED.get(index);
 	}
 

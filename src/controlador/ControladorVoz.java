@@ -1,8 +1,6 @@
 package controlador;
 
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -11,8 +9,6 @@ import application.SpeechRecognizer;
 import application.VozAsistente;
 import modelo.Casa;
 import modelo.ED;
-import modelo.EDProgAndReg;
-import modelo.EDRegulable;
 import modelo.Zona;
 import vista.DialogoED;
 import vista.MiBotonED;
@@ -20,7 +16,7 @@ import vista.MiBotonEstado;
 import vista.MiBotonZona;
 import vista.VentanaPrincipal;
 
-public class ControladorVoz extends Thread {
+public class ControladorVoz{
 
 	ED electrodomestico;
 	Thread hilo;
@@ -32,15 +28,6 @@ public class ControladorVoz extends Thread {
 	ControladorListaED controladorED;
 	int flag;
 	Casa casa;
-	
-/**
- * @brief filtrador de palabras
- * 
- *
- * Compara la palabra obtenida mediante la voz, con los arrays : palabrasZona,palabrasED,palabrasEstados
- * Una vez comparado, ejecuta el boton al que apunta.
- */
-
 
 	public ControladorVoz(VentanaPrincipal vista, Casa casa) {
 
@@ -62,11 +49,11 @@ public class ControladorVoz extends Thread {
 
 			this.dialogo = vista.getPanelCentral().getControladorED().getDialogoED();
 
-			String[] palabrasZona = { "cocina", "ba帽o", "habitaci贸n", "sal贸n", "principal", "jardin" };
-			String[] palabrasED = { "luz", "persiana", "temperatura", "lavadora", "horno", "agua", "televisi贸n" };
+			String[] palabrasZona = { "cocina", "ba駉", "habitaci髇", "sal髇", "principal", "jardin" };
+			String[] palabrasED = { "luz", "ventana", "temperatura", "lavadora", "horno", "agua", "televisi髇" };
 			String[] palabrasEstados = { "valor", "encender", "apagar", "programa", "aceptar", "cancelar" };
 
-			if (palabra.equals("en que habitaci贸n estamos")) {
+			if (palabra.equals("en que habitaci髇 estamos")) {
 
 				voz.speak(vista.getZonaActual().getNombre());
 
@@ -102,11 +89,9 @@ public class ControladorVoz extends Thread {
 
 											if (b.getEstado() && palabra.equals("apagar")) {
 
-												System.out.println("Boton Apagar");
 												b.doClick();
 												return;
 											} else if (!b.getEstado() && palabra.equals("encender")) {
-												System.out.println("Boton Encender");
 												b.doClick();
 												return;
 											}
@@ -123,7 +108,6 @@ public class ControladorVoz extends Thread {
 									if (palabra.contains("cancelar") || palabra.contains("aceptar")) {
 										for (JButton boton : dialogo.getBotonesOKyCancel()) {
 											if (palabra.equalsIgnoreCase(boton.getActionCommand())) {
-												System.out.println("Boton " + boton.getActionCommand());
 												boton.doClick();
 												return;
 											}
@@ -135,7 +119,6 @@ public class ControladorVoz extends Thread {
 					}
 				}
 			}
-			// } else {
 			if (vista.getFlag() == 0) {
 
 				for (int i = 0; i < palabrasZona.length; i++) {
@@ -267,12 +250,58 @@ public class ControladorVoz extends Thread {
 			return "treinta y nueve";
 		case "40":
 			return "cuarenta";
+		case "50":
+			return "cincuenta";
+		case "60":
+			return "sesenta";
+		case "70":
+			return "setenta";
+		case "80":
+			return "ochenta";
+		case "90":
+			return "noventa";
 		case "100":
 			return "cien";
+		case "110":
+			return "ciento diez";
+		case "120":
+			return "ciento veinte";
+		case "130":
+			return "ciento treinta";
+		case "140":
+			return "ciento cuarenta";
+		case "150":
+			return "ciento cincuenta";
+		case "160":
+			return "ciento sesenta";
+		case "170":
+			return "ciento setenta";
+		case "180":
+			return "ciento ochenta";
 		case "190":
 			return "ciento noventa";
 		case "200":
 			return "doscientos";
+		case "210":
+			return "doscientos diez";
+		case "220":
+			return "doscientos veinte";
+		case "230":
+			return "doscientos treinta";
+		case "240":
+			return "doscientos cuarenta";
+		case "250":
+			return "doscientos cincuenta";
+		case "260":
+			return "doscientos sesenta";
+		case "270":
+			return "doscientos setenta";
+		case "280":
+			return "doscientos ochenta";
+		case "290":
+			return "doscientos noventa";
+		case "300":
+			return "trescientos";
 		default:
 			return "";
 		}
@@ -364,12 +393,58 @@ public class ControladorVoz extends Thread {
 			return "39";
 		case "cuarenta":
 			return "40";
+		case "cincuenta":
+			return "50";
+		case "sesenta":
+			return "60";
+		case "setenta":
+			return "70";
+		case "ochenta":
+			return "80";
+		case "noventa":
+			return "90";
 		case "cien":
 			return "100";
+		case "ciento diez":
+			return "110";
+		case "ciento veinte":
+			return "120";
+		case "ciento treinta":
+			return "130";
+		case "ciento cuarenta":
+			return "140";
+		case "ciento cincuenta":
+			return "150";
+		case "ciento sesenta":
+			return "160";
+		case "ciento setenta":
+			return "170";
+		case "ciento ochenta":
+			return "180";
 		case "ciento noventa":
 			return "190";
 		case "doscientos":
 			return "200";
+		case "doscientos diez":
+			return "210";
+		case "doscientos veinte":
+			return "220";
+		case "doscientos treinta":
+			return "230";
+		case "doscientos cuarenta":
+			return "240";
+		case "doscientos cincuenta":
+			return "250";
+		case "doscientos sesenta":
+			return "260";
+		case "doscientos setenta":
+			return "270";
+		case "doscientos ochenta":
+			return "280";
+		case "doscientos noventa":
+			return "290";
+		case "trescientos":
+			return "300";
 		default:
 			return "";
 		}

@@ -33,7 +33,6 @@ public class EDProgramable extends ED {
 		this.programa = datos[3];
 		String programas = datos[4];
 		String[] datos2 = programas.split("[/]");
-		//String[] programasArray = programa.split("[^]");
 		this.listaProgramas = new ArrayList<String>();
 		for(int i = 0; i < datos2.length; i++) {
 			
@@ -41,13 +40,6 @@ public class EDProgramable extends ED {
 		}
 		
 	}
-	/*public String toString() {
-		String s= "Programas: ";
-		for (String prog : listaProgramas){
-			s+=prog+"-";
-		}
-		return s;
-	}*/
 	
 
 	public List<String> getLista(){
@@ -55,13 +47,12 @@ public class EDProgramable extends ED {
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return super.toString();
 	}
 
 	@Override
 	public String toStringFile() {
-		String s = "â‚¬"+super.toStringFile()+"$"+this.programa+"$";
+		String s = "€"+super.toStringFile()+"$"+this.programa+"$";
 		for (String prog: listaProgramas){
 			s+=prog+"/";
 		}

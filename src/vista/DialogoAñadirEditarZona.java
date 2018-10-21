@@ -22,11 +22,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import controlador.ControladorAñadirEditarZona;
+import controlador.ControladorA�adirEditarZona;
 import modelo.Casa;
 import modelo.Zona;
 
-public class DialogoAñadirEditarZona extends JDialog {
+public class DialogoA�adirEditarZona extends JDialog {
 
 	JComboBox<String> tipoZonaCombo;
 	JButton bImg, bOk, bCancel;
@@ -37,13 +37,13 @@ public class DialogoAñadirEditarZona extends JDialog {
 	Casa casa;
 	MenuConfig vista;
 	int i = 0;
-	String tiposZona[] = { "Baño", "Salón", "Cocina", "Habitación", "Jardin" };
+	String tiposZona[] = { "Ba�o", "Salón", "Cocina", "Habitación", "Jardin" };
 
-	public DialogoAñadirEditarZona(JFrame ventana, String titulo, boolean modo, boolean estaAñadiendo, Casa casa) {
+	public DialogoA�adirEditarZona(JFrame ventana, String titulo, boolean modo, boolean estaA�adiendo, Casa casa) {
 		super(ventana, titulo, modo);
 		this.vista = (MenuConfig) ventana;
 		this.casa = casa;
-		controlador = new ControladorAñadirEditarZona(this, vista.getCasa(), estaAñadiendo);
+		controlador = new ControladorA�adirEditarZona(this, vista.getCasa(), estaA�adiendo);
 		
 		this.setSize(600, 800);
 		this.setLocation(200, 200);

@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import modelo.Zona;
-import vista.DialogoAÃ±adirEditarED;
+import vista.DialogoAñadirEditarED;
 import vista.DialogoEditListEDZona;
 
 public class ControladorListaEDConfig implements ActionListener {
@@ -20,9 +20,9 @@ public class ControladorListaEDConfig implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
-		case "AÃ±adir":
+		case "Añadir":
 			vista.getjLista().clearSelection();
-			new DialogoAÃ±adirEditarED(vista, "AÃ±adir electrodomÃ©stico", true, true);
+			new DialogoAñadirEditarED(vista, "Añadir electrodoméstico", true, true);
 			vista.getjLista().setSelectedIndex(0);
 			vista.getAccBorrar().setEnabled(true);
 			vista.getAccEdit().setEnabled(true);
@@ -38,8 +38,10 @@ public class ControladorListaEDConfig implements ActionListener {
 			break;
 		case "Editar":
 			if (vista.getSelectedED() != null) {
-				new DialogoAÃ±adirEditarED(vista, "Editar electrodomÃ©stico", true, false);
+				new DialogoAñadirEditarED(vista, "Editar electrodoméstico", true, false);
 			}
+			break;
+		default:
 			break;
 		}
 	}

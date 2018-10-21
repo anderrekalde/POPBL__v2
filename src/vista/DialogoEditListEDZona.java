@@ -31,7 +31,7 @@ import modelo.Zona;
 
 public class DialogoEditListEDZona extends JDialog {
 
-	AbstractAction accA√±adir, accBorrar, accEdit;
+	AbstractAction accAÒadir, accBorrar, accEdit;
 
 	RendererEDConfig rendererEDConfig;
 
@@ -59,7 +59,7 @@ public class DialogoEditListEDZona extends JDialog {
 	}
 
 	private void crearAcciones() {
-		accA√±adir = new MiAccion("A√±adir", new ImageIcon("Imagenes/edit_add.png"), "A√±ade un nuevo electrodom√©stico",
+		accAÒadir = new MiAccion("AÒadir", new ImageIcon("Imagenes/edit_add.png"), "AÒade un nuevo electrodom√©stico",
 				KeyEvent.VK_A);
 		accBorrar = new MiAccion("Eliminar", new ImageIcon("Imagenes/edit_remove.png"),
 				"Borra el electrodom√©stico seleccionado", KeyEvent.VK_X);
@@ -105,9 +105,9 @@ public class DialogoEditListEDZona extends JDialog {
 		JButton btn;
 		JToolBar toolBar = new JToolBar();
 
-		btn = (JButton) toolBar.add(new JButton(accA√±adir));
+		btn = (JButton) toolBar.add(new JButton(accAÒadir));
 		btn.addActionListener(controladorListaED);
-		btn.setActionCommand("A√±adir");
+		btn.setActionCommand("AÒadir");
 
 		btn = (JButton) toolBar.add(new JButton(accBorrar));
 		btn.addActionListener(controladorListaED);

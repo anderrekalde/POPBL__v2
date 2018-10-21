@@ -3,7 +3,6 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -15,8 +14,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -38,20 +35,23 @@ public class DialogoED extends JDialog implements ActionListener {
 	MiBotonEstado encendido;
 	ED electrodomestico;
 	JPanel panel;
-	JLabel lEstado, lValor, lPrograma;
+	JLabel lEstado;
+	JLabel lValor;
+	JLabel lPrograma;
 	VentanaPrincipal principal;
 	MiBotonEstado bPrograma;
 	JTextField tValor;
 	String tipo;
 	JFrame jf;
 	JSlider slider;
-	JButton bOk, bCancel;
-	List<MiBotonEstado> listaBotonesProgramas;
+	JButton bOk;
+	JButton bCancel;
+	private List<MiBotonEstado> listaBotonesProgramas;
 	EDProgramable programableED;
 	EDRegulable regulableED;
 	EDProgAndReg progAndRegED;
 	int i;
-	List<MiBotonEstado> listaBotonesED;
+	private List<MiBotonEstado> listaBotonesED;
 
 	public DialogoED(VentanaPrincipal principal, String nombre, String tipo, ED electrodomestico) {
 		super(principal, nombre, false);
@@ -73,24 +73,26 @@ public class DialogoED extends JDialog implements ActionListener {
 		}
 		jf = principal;
 		this.addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				principal.setFlag(0);
 				DialogoED.this.electrodomestico.switchIsSelected();
 				dispose();
 			}
 		});
-		this.setLocation(0, 0);
 		this.setSize(400, 500);
 		this.setContentPane(crearPanelDialogo());
 		this.pack();
+		this.setLocation(principal.getToolkit().getScreenSize().width / 2 - this.getWidth() / 2,
+				principal.getToolkit().getScreenSize().height / 2 - this.getHeight() / 2);
 		this.setVisible(true);
 	}
 
 	private Container crearPanelDialogo() {
-		JPanel panel = new JPanel(new BorderLayout(0, 20));
-		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-		panel.add(crearPanelDatos(), BorderLayout.CENTER);
-		panel.add(crearPanelBotones(), BorderLayout.SOUTH);
+		JPanel pane = new JPanel(new BorderLayout(0, 20));
+		pane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		pane.add(crearPanelDatos(), BorderLayout.CENTER);
+		pane.add(crearPanelBotones(), BorderLayout.SOUTH);
 		return panel;
 	}
 
@@ -98,7 +100,6 @@ public class DialogoED extends JDialog implements ActionListener {
 		panel = new JPanel(new BorderLayout(10, 10));
 		panel.add(crearPanelEstado(), BorderLayout.NORTH);
 
-		// si no, añadir todo, y hacer invisible
 		switch (tipo) {
 
 		case "programable":
@@ -114,7 +115,8 @@ public class DialogoED extends JDialog implements ActionListener {
 			int valor = regulableED.getValor();
 			panel.add(crearPanelValor(regulableED, numValores, vMin, vMax, valor), BorderLayout.CENTER);
 			break;
-
+		default:
+			break;
 		}
 
 		return panel;
@@ -180,15 +182,15 @@ public class DialogoED extends JDialog implements ActionListener {
 		slider.setPreferredSize(new Dimension(numValores * 5, 50));
 		slider.setSnapToTicks(true);
 
-		if (vMax>40){
+		if (vMax > 40) {
 			slider.setMajorTickSpacing(10);
-		}else{
+		} else {
 			slider.setMajorTickSpacing(1);
 		}
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 		slider.setLabelTable(slider.createStandardLabels(10));
-		if (!ed.getEstado()){
+		if (!ed.getEstado()) {
 			slider.setEnabled(false);
 		}
 		panelValor.add(lValor, BorderLayout.NORTH);
@@ -223,16 +225,16 @@ public class DialogoED extends JDialog implements ActionListener {
 	}
 
 	private Component crearPanelBotones() {
-		JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
+		JPanel pane = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
 		bOk = new JButton("Aceptar");
 		bOk.addActionListener(this);
 		bOk.setActionCommand("aceptar");
 		bCancel = new JButton("Cancelar");
 		bCancel.addActionListener(this);
 		bCancel.setActionCommand("cancelar");
-		panel.add(bOk);
-		panel.add(bCancel);
-		return panel;
+		pane.add(bOk);
+		pane.add(bCancel);
+		return pane;
 	}
 
 	public ED getED() {
@@ -242,7 +244,6 @@ public class DialogoED extends JDialog implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Boolean estado = electrodomestico.getEstado();
 		try {
 			switch (e.getActionCommand()) {
 			case "encender o apagar":
@@ -279,6 +280,8 @@ public class DialogoED extends JDialog implements ActionListener {
 						}
 						slider.setEnabled(true);
 					}
+				default:
+					break;
 				}
 
 				break;
@@ -315,10 +318,13 @@ public class DialogoED extends JDialog implements ActionListener {
 					((EDProgAndReg) electrodomestico).setValor(slider.getValue());
 					break;
 				}
+				default:
+					break;
 
 				for (MiBotonED botonED : principal.getListaBotonesEDs()) {
 					botonED.paintBorder();
 				}
+				break;
 
 			case "cancelar":
 				principal.setFlag(0);
@@ -356,6 +362,8 @@ public class DialogoED extends JDialog implements ActionListener {
 					}
 					break;
 				}
+				default:
+					break;
 			}
 		} catch (NumberFormatException ex) {
 			JOptionPane.showMessageDialog(this, "Error en el formato de los datos", "Datos no v�lidos",

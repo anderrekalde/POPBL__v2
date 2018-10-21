@@ -1,7 +1,9 @@
 package modelo;
 
 public class EDRegulable extends ED {
-	int vMin, vMax, valor;
+	int vMin;
+	int vMax;
+	int valor;
 	
 	public EDRegulable(String n, String img, boolean estado, int vMin, int vMax, int valor) {
 		super(n, img, estado);
@@ -54,7 +56,6 @@ public class EDRegulable extends ED {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return super.toString();
 	}
 	

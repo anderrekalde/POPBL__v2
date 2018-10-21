@@ -1,0 +1,11 @@
+sonar.projectKey=org.sonarqube:POPBL3_CasaDomotica
+sonar.projectName=POPBL3_CasaDomotica
+sonar.projectVersion=1.0
+
+sonar.sources=src,Imagenes,resource,Ficheros,Fonts
+
+sonar.sourceEncoding=UTF-8
+
+# retrieve code coverage data from the Cobertura report
+sonar.flex.cobertura.reportPath=coverage-report/coverage-cobertua-flex.xml
+sonar.java.binaries=bin

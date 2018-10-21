@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 
 import modelo.Casa;
-import modelo.Zona;
 import vista.MenuConfig;
 import vista.VentanaPrincipal;
 
@@ -41,6 +40,8 @@ public class ControladorBotones implements ActionListener{
 			modeloCasa.guardarDatosFichero(modeloCasa.getRutaCasaConfig());
 			vistaPrincipal.dispose();
 			System.exit(0);
+			break;
+		default:
 			break;
 		}
 	}

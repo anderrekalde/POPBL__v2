@@ -1,15 +1,11 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.Observable;
-
-import javax.swing.ImageIcon;
-
 public class ED{
 	String nombre;
 	String imagen;
 	String tipoED;
-	boolean estado, isSelected;
+	boolean estado;
+	boolean isSelected;
 	
 	public ED(String n, String img, boolean estado){
 		this.nombre = n;

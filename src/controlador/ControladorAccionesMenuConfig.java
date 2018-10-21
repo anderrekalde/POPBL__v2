@@ -2,12 +2,10 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 import modelo.Casa;
-import vista.DialogoAÃ±adirEditarZona;
+import vista.DialogoAñadirEditarZona;
 import vista.MenuConfig;
 
 public class ControladorAccionesMenuConfig implements ActionListener {
@@ -24,14 +22,14 @@ public class ControladorAccionesMenuConfig implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		switch (e.getActionCommand()) {
-		case "AÃ±adir":
+		case "Añadir":
 
 			if(casaModelo.getCopiaLista().size()> 25) {
 				
 				 JOptionPane.showMessageDialog(vista, "No pueden haber mas de 25 zonas", "Error Zonas", JOptionPane.ERROR_MESSAGE);
 				 
 			}else {
-			DialogoAÃ±adirEditarZona d = new DialogoAÃ±adirEditarZona(vista, "AÃ±adir Zona", true, true,  casaModelo);
+			DialogoAñadirEditarZona d = new DialogoAñadirEditarZona(vista, "Añadir Zona", true, true,  casaModelo);
 			
 			}
 			break;
@@ -40,11 +38,13 @@ public class ControladorAccionesMenuConfig implements ActionListener {
 			
 			break;
 		case "Editar":
-			DialogoAÃ±adirEditarZona d2 = new DialogoAÃ±adirEditarZona(vista, "AÃ±adir Zona", true, false, casaModelo);			
+			DialogoAñadirEditarZona d2 = new DialogoAñadirEditarZona(vista, "Añadir Zona", true, false, casaModelo);			
+			break;
+		default:
 			break;
 		}
 		vista.updateList();
 
 	}
 
-}
+}	
